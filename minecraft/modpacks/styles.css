@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'CSMS';
+    src: url(resources/fonts/CS_MS.woff2) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 img {
     width: 55px;
     border-radius: 10px;
@@ -8,19 +15,19 @@ img {
 h1 {
     font-weight: bold;
     font-size: xx-large;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'CSMS', cursive;
 }
 
 .title {
     font-size: medium;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'CSMS', cursive;
 }
 
 .subtitle {
     font-size: x-small;
     margin-top: -15px;
     font-style: italic;
-    font-family: 'Comic Sans MS', cursive;
+    font-family: 'CSMS', cursive;
 }
 
 .bold {
