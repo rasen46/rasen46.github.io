@@ -1,0 +1,48 @@
+.json-card {
+    border: 1px solid #999;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.json-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.json-expanded {
+    display: none;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+strong {
+    font-family: Arial, sans-serif;
+    font-size: medium;
+}
+
+div {
+    font-family: Arial, sans-serif;
+    font-size: small;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+}
+
+button {
+    padding: 4px 8px;
+    cursor: pointer;
+}
