@@ -22,23 +22,19 @@
 
   const container = document.getElementById('container');
 
-  // Map each file to a fetch Promise
   const fetchPromises = jsonFiles.map(file => 
     fetch(`utilities/jsons/${file}`).then(res => res.json())
   );
-
-  // Wait for all fetches to finish
+  
   Promise.all(fetchPromises).then(results => {
-    // results is an array of data objects in the same order as jsonFiles
 
     results.forEach(data => {
       const card = document.createElement('div');
       card.className = 'json-card';
 
-      // Extract inner 'data' object or empty object
       const innerData = data.data || {};
       const formattedData = JSON.stringify(innerData, null, 2)
-        .slice(1, -1)  // remove outer braces
+        .slice(1, -1)
         .trim();
 
       card.innerHTML = `
