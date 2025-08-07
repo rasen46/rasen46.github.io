@@ -11,55 +11,64 @@
     <h1>rasen's fast flags bin</h1>
   </div>
 
-  <script>
-    const jsonFiles = [
-      'v1.1.json',
-      'v1.json',
-      'v1_beta.json',
-      'v0.2.json',
-      'v0.1_20.json'
-    ];
+<script>
+  const jsonFiles = [
+    'v1.1.json',
+    'v1.json',
+    'v1_beta.json',
+    'v0.2.json',
+    'v0.1_20.json'
+  ];
 
-    const container = document.getElementById('container');
+  const container = document.getElementById('container');
 
-    jsonFiles.forEach(file => {
-      fetch(`utilities/jsons/${file}`)
-  .then(res => res.json())
-  .then(data => {
-    const card = document.createElement('div');
-    card.className = 'json-card';
-    
-    const innerData = data.data || {};
-    const formattedData = JSON.stringify(innerData, null, 2)
-      .slice(1, -1)
-      .trim();
+  // Map each file to a fetch Promise
+  const fetchPromises = jsonFiles.map(file => 
+    fetch(`./jsons/${file}`).then(res => res.json())
+  );
 
-    card.innerHTML = `
-      <div class="json-preview">
-        <div>
-          <strong>${data.title || 'No Title'}</strong>
-          <div>${data.description || 'No description'}</div>
+  // Wait for all fetches to finish
+  Promise.all(fetchPromises).then(results => {
+    // results is an array of data objects in the same order as jsonFiles
+
+    results.forEach(data => {
+      const card = document.createElement('div');
+      card.className = 'json-card';
+
+      // Extract inner 'data' object or empty object
+      const innerData = data.data || {};
+      const formattedData = JSON.stringify(innerData, null, 2)
+        .slice(1, -1)  // remove outer braces
+        .trim();
+
+      card.innerHTML = `
+        <div class="json-preview">
+          <div>
+            <strong>${data.title || 'No Title'}</strong>
+            <div>${data.description || 'No description'}</div>
+          </div>
+          <div>
+            <button onclick="toggleExpand(this)">View</button>
+          </div>
         </div>
-        <div>
-          <button onclick="toggleExpand(this)">View</button>
+        <div class="json-expanded" style="display:none;">
+          <pre>${formattedData}</pre>
         </div>
-      </div>
-      <div class="json-expanded" style="display:none;">
-        <pre>${formattedData}</pre>
-      </div>
-    `;
+      `;
 
-    document.getElementById('container').appendChild(card);
-  });
+      container.appendChild(card);
     });
+  }).catch(err => {
+    console.error("Error loading JSON files:", err);
+  });
 
-    function toggleExpand(button) {
-      const expanded = button.closest('.json-card').querySelector('.json-expanded');
-      const isVisible = expanded.style.display === 'block';
-      expanded.style.display = isVisible ? 'none' : 'block';
-      button.textContent = isVisible ? 'View' : 'Hide';
-    }
-  </script>
+  function toggleExpand(button) {
+    const expanded = button.closest('.json-card').querySelector('.json-expanded');
+    const isVisible = expanded.style.display === 'block';
+    expanded.style.display = isVisible ? 'none' : 'block';
+    button.textContent = isVisible ? 'View' : 'Hide';
+  }
+</script>
 
 </body>
 </html>
