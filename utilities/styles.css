@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .json-expanded {
@@ -45,4 +46,5 @@ h1 {
 button {
     padding: 4px 8px;
     cursor: pointer;
+
 }
