@@ -1,4 +1,7 @@
 {
+    "title": "rasen's fast flags v1.3",
+    "description": "small reworks",
+    "data": {
   "FLogNetwork": "7",
   "FFlagHandleAltEnterFullscreenManually": "False",
   "FFlagDisablePostFx": "True",
@@ -206,4 +209,5 @@
   "FIntRuntimeMaxNumOfSchedulers": "6400000",
   "FIntRuntimeMaxNumOfSemaphores": "6400000",
   "FIntRuntimeMaxNumOfStrands": "6400000"
+}
 }
