@@ -152,7 +152,6 @@
   "DFFlagAddMachineIDInstallerTelemetry": "False",
   "FLogRobloxTelemetry": "0",
   "FIntTaskSchedulerThreadMin": "100",
-  "DFStringPerformanceControlDeviceMemoryBufferConfig": "{\u0022memory_bucket\u0022:[{\u0022maxsize\u0022:0,\u0022reservePct\u0022:0.0,\u0022reserveMB\u0022:0},{\u0022maxsize\u0022:0,\u0022reservePct\u0022:0.0,\u0022reserveMB\u0022:0},{\u0022maxsize\u0022:0,\u0022reservePct\u0022:0.0,\u0022reserveMB\u0022:0}]}",
   "FFlagRenderDX11FixWaitForGpu": "False",
   "DFIntConnectionMTUSize": "1468",
   "DFStringHttpPointsReporterUrl": "0.0.0.0",
@@ -211,3 +210,4 @@
   "FIntRuntimeMaxNumOfStrands": "6400000"
 }
 }
+
