@@ -1,5 +1,6 @@
 // configs
 const jsonFiles = [
+  'v1.3_u2.json',
   'v1.3.json',
   'v1.2.json',
   'v1.1.json',
@@ -112,4 +113,5 @@ function copyData(button) {
       alert("Failed to copy data!");
     });
 }
+
 
