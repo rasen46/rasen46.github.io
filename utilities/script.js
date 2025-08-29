@@ -7,7 +7,8 @@ const jsonFiles = [
   'v1.json',
   'v1_beta.json',
   'v0.2.json',
-  'v0.1_20.json'
+  'v0.1_20.json',
+  'LIN_v0.1.json'
 ];
 
 // elements
@@ -113,5 +114,6 @@ function copyData(button) {
       alert("Failed to copy data!");
     });
 }
+
 
 
