@@ -1,6 +1,6 @@
 {    
   "title": "rasen's fast flags v1.4 u2",
-  "description": "fixes highlights not working and tweaked other things (USE v1.4 IF YOU WANT BETTER FRM BUT WORSE GQ)",
+  "description": "fixes highlights, and tweaked it a little bit (use 1.4 instead for higher FPS)",
   "cata_class": "rasen",
   "data": {
   "FFlagRenameFriendsToConnectionsCoreUI": "False",
