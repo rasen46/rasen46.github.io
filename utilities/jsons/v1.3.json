@@ -1,6 +1,6 @@
 {
     "title": "rasen's fast flags v1.3",
-    "description": "small reworks",
+    "description": "tweaks",
     "cata_class": "rasen",
     "data": {
   "FLogNetwork": "7",
@@ -211,4 +211,5 @@
   "FIntRuntimeMaxNumOfStrands": "6400000"
 }
 }
+
 
