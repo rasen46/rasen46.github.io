@@ -1,6 +1,6 @@
 {    
-  "title": "rasen's fast flags v1.4 u4",
-  "description": "roblox removed 99% fast flags i guess so heres a list that works with the current fast flag restrictions, which i think might increase preformance on low end devices i guess",
+  "title": "rasen's fast flags v1.4 u4 (ignore this read desc if u want to know how to have fast flags again i guess)",
+  "description": "just go in C:\Users\YOUR_USER_FOR_PC_HERE\AppData\Local\Roblox\ClientSettings", and then paste ur fast flags inside IxpSettings.json and save,
   "cata_class": "rasen",
   "data": {
   "DFIntCSGLevelOfDetailSwitchingDistanceL12": "225",
