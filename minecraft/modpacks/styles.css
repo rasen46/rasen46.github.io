@@ -46,6 +46,7 @@ body {
   height: 100px;
   object-fit: cover;
   background-color: #ccc;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
 }
 
@@ -59,8 +60,7 @@ body {
   background: white;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .content-section h2 {
@@ -70,6 +70,15 @@ body {
 .content-section p {
   margin-bottom: 15px;
   color: #444;
+}
+
+.unavailable button {
+  padding: 8px 10px;
+  border: none;
+  background: #242424;
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .buttons {
@@ -87,5 +96,5 @@ body {
 }
 
 .buttons button:hover {
-  background: #555555;
+  background: #808080;
 }
