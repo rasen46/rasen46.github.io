@@ -80,4 +80,4 @@ var rjs = {
   }
 };
 
-return rjs;
+rjs.print("loaded rasenJS resources 1.0.3 real")
