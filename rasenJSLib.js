@@ -26,11 +26,11 @@
             return Math.max(m, Math.min(n, value));
         },
 
-        lerp1: function(st, ed, a) {
+        lerp: function(st, ed, a) {
             return st + (ed - st) * a;
         },
 
-        lerpRGB1: function(rgb1, rgb2, a) {
+        lerpRGB: function(rgb1, rgb2, a) {
             var c = [rgb1.replace("rgb(", "").replace(")", "").split(","), rgb2.replace("rgb(", "").replace(")", "").split(",")];
             return rgb(
                 rjs.lerp(parseFloat(c[0][0]) || 0, parseFloat(c[1][0]) || 0, a),
@@ -39,7 +39,7 @@
             );
         },
 
-        lerpRGBA1: function(rgba1, rgba2, a) {
+        lerpRGBA: function(rgba1, rgba2, a) {
             var c = [rgba1.replace("rgba(", "").replace(")", "").split(","), rgba2.replace("rgba(", "").replace(")", "").split(",")];
             return rgb(
                 rjs.lerp(parseFloat(c[0][0]) || 0, parseFloat(c[1][0]) || 0, a),
