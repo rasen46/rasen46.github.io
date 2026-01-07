@@ -76,7 +76,6 @@
         if (status == 200) {
           var usableData = JSON.parse(content);
           var b64 = usableData.content;
-          
           rjs.modules[usableData.name] = eval(rjs.atob(b64));
         } else{
           return rjs.print("failed to load module: "+status,"WARN");
