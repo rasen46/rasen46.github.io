@@ -1,7 +1,7 @@
 var rjs = {
   startTime: getTime(),
   
-  // rasenJS resources v1.0.2 real
+  // rasenJS resources v1.0.3 real // 
   print: function(text, type){
     var cTime = getTime()-rjs.startTime;
     
@@ -45,4 +45,37 @@ var rjs = {
       rjs.lerp(parseFloat(c[0][3])||0,parseFloat(c[1][3])||0,a)
       );
   },
+  
+  atob: function(str){
+    //used a tutorial since i idk how base64 works
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    var output = "";
+    var buffer = 0;
+    var bits = 0;
+    
+    str = str.replace(/=+$/, "");
+    for (var i = 0; i < str.length; i++) {
+      var val = chars.indexOf(str.charAt(i));
+      if (val < 0) continue;
+
+      buffer = (buffer << 6) | val;
+      bits += 6;
+      if (bits >= 8) {
+        bits -= 8;
+        output += String.fromCharCode((buffer >> bits) & 0xFF);
+      }
+    }
+    return output;
+  },
+  
+  loadModule: function(url){
+    startWebRequest(url, function(status, type, content){
+      if (status == 200) {
+        var b64 = JSON.parse(content).content;
+        return eval(rjs.atob(b64));
+      } else{
+        return rjs.print("failed to load module: "+status,"WARN");
+      }
+    });
+  }
 };
