@@ -2,7 +2,7 @@
    var rjs = {
     startTime: getTime(),
     
-    // rasenJS resources v1.0.5 real // 
+    // rasenJS resources v1.0.6 real // 
     print: function(text, type){
       var cTime = getTime()-rjs.startTime;
       
@@ -77,13 +77,13 @@
           var usableData = JSON.parse(content);
           var b64 = usableData.content;
           
-          rjs.modules[usableData.name] = eval(rjs.atob(b64))({});
+          rjs.modules[usableData.name] = eval(rjs.atob(b64));
         } else{
           return rjs.print("failed to load module: "+status,"WARN");
         }
       });
     },
   };
-  rjs.print("loaded rasenJS resources 1.0.5 real");
+  rjs.print("loaded rasenJS resources 1.0.6 real");
   return rjs;
 })();
