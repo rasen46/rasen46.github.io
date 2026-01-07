@@ -22,7 +22,7 @@
             console.log("[" + formatToReadable + "] " + "[script.js/" + logType + "]: " + text);
         },
 
-        clamp1: function(value, m, n) {
+        clamp: function(value, m, n) {
             return Math.max(m, Math.min(n, value));
         },
 
