@@ -1,6 +1,6 @@
-(function (exports) {
-  exports.example: function(){
+(function (module) {
+  module.example: function(){
     rjs.print("hello");
   },
-  return exports;
+  return module;
 })
