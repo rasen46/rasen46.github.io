@@ -88,4 +88,8 @@ var rjs = {
 			}
 		});
 	},
+
+	require: function(name) {
+  		return rjs.modules[name];
+	},
 };
