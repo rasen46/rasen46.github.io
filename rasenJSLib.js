@@ -89,6 +89,8 @@
 			rjs.loadModule("https://api.github.com/repos/rasen46/rasen46.github.io/contents/rasenJSLib.js");
 			rjs = rjs.modules["rasenJSLib.js"];
 		}
+
+		e: function(){rjs.print("real");}
 	};
 	rjs.print("loaded rasenJS resources 1.0.8 real");
 	return rjs;
