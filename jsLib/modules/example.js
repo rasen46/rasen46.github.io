@@ -1,6 +1,6 @@
 (function (module) {
-  module.example: function(){
+  module.example = function () {
     rjs.print("hello");
-  },
+  };
   return module;
-})
+})({});
