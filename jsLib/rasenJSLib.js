@@ -90,6 +90,7 @@ var rjs = {
 	},
 
 	require: function(name, max) {
+	  if (!name || typeof name != "string") {return rjs.print("expected string, instead got malformed name?", "WARN")}
 	  var maxAttempts = max || 5, i = 0, tl;
 	  tl = timedLoop(500, function(){
 	    i++;
@@ -98,6 +99,7 @@ var rjs = {
 	      return mod;
 	    } else if (i > maxAttempts){
 	      stopTimedLoop(tl);
+	      return rjs.print("failed to require "+name, "WARN");
 	    }
 	  });
 	},
