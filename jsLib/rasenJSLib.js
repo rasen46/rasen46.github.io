@@ -2,8 +2,9 @@ var rjs = {
 	startTime: getTime(),
 	modules: {},
 
-	// rasenJS resources v1.0.8 real //
-	// source file: rjs.loadModule("https://api.github.com/repos/rasen46/rasen46.github.io/contents/rasenJSLib.js") //
+	// rasenJS resources v1.1.0 real //
+	// source file: rjs.loadModule("https://api.github.com/repos/rasen46/rasen46.github.io/jsLib/rasenJSLib.js") //
+	// example module loading: https://github.com/rasen46/rasen46.github.io/blob/main/jsLib/modules/example.js //
 	print: function(text, type) {
 		var cTime = getTime() - rjs.startTime;
 
@@ -30,6 +31,7 @@ var rjs = {
 	},
 
 	lerpRGB: function(rgb1, rgb2, a) {
+		if (!rgb1 || !rgb2 || !a || typeof rgb1 != "string" || typeof rgb2 != "string" || typeof a != "number") return rjs.print("got malformed rgb or alpha values (is it a string or number?)", "WARN");
 		var c = [rgb1.replace("rgb(", "").replace(")", "").split(","),
 			rgb2.replace("rgb(", "").replace(")", "").split(",")
 		];
@@ -42,6 +44,7 @@ var rjs = {
 	},
 
 	lerpRGBA: function(rgba1, rgba2, a) {
+		if (!rgba1 || !rgba2 || !a || typeof rgba1 != "string" || typeof rgba2 != "string" || typeof a != "number") return rjs.print("got malformed rgb or alpha values (is it a string or number?)", "WARN");
 		var c = [rgba1.replace("rgba(", "").replace(")", "").split(","),
 			rgba2.replace("rgba(", "").replace(")", "").split(",")
 		];
@@ -54,7 +57,7 @@ var rjs = {
 	},
 
 	atob: function(str) {
-		if (!str || typeof str != "string") return rjs.print("invaild string", "warn");
+		if (!str || typeof str != "string") return rjs.print("got malformed string (is it a string?)", "WARN");
 		//used a tutorial since i idk how base64 works
 		var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
 			output = "",
@@ -77,6 +80,7 @@ var rjs = {
 	},
 
 	loadModule: function(url) {
+		if (!url || typeof url != "string") return rjs.print("got malformed url (is it a string?)", "WARN");
 		startWebRequest(url, function(status, type, content) {
 			if (status == 200) {
 				var usableData = JSON.parse(content),
@@ -89,18 +93,24 @@ var rjs = {
 		});
 	},
 
-	require: function(name, max) {
-	  if (!name || typeof name != "string") {return rjs.print("expected string, instead got malformed name?", "WARN")}
-	  var maxAttempts = max || 5, i = 0, tl;
-	  tl = timedLoop(500, function(){
-	    i++;
-	    var mod = rjs.modules[name];
-	    if (mod) {
-	      return mod;
-	    } else if (i > maxAttempts){
-	      stopTimedLoop(tl);
-	      return rjs.print("failed to require "+name, "WARN");
-	    }
-	  });
-	},
+	require: function(name, callback, max) {
+		if (!name || typeof name != "string") return rjs.print("got malformed name (is it a string?)", "WARN");
+
+		var maxAttempts = max || 5;
+		var i = 0;
+		var tl;
+
+		tl = timedLoop(100, function() {
+			i++;
+
+			if (rjs.modules[name]) {
+				stopTimedLoop(tl);
+				callback(rjs.modules[name]);
+			} else if (i > maxAttempts) {
+				stopTimedLoop(tl);
+				callback(undefined);
+				rjs.print("took too long to retrieve requested module: " + name, "WARN");
+			}
+		});
+	}
 };
