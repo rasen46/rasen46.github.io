@@ -89,7 +89,16 @@ var rjs = {
 		});
 	},
 
-	require: function(name) {
-  		return rjs.modules[name];
+	require: function(name, max) {
+	  var maxAttempts = max || 5, i = 0, tl;
+	  tl = timedLoop(500, function(){
+	    i++;
+	    var mod = rjs.modules[name];
+	    if (mod) {
+	      return mod;
+	    } else if (i > maxAttempts){
+	      stopTimedLoop(tl);
+	    }
+	  });
 	},
 };
