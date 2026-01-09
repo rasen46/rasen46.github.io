@@ -3,7 +3,7 @@ var rjs = {
 	modules: {},
 
 	// rasenJS resources v1.1.0 real //
-	// source file: rjs.loadModule("https://api.github.com/repos/rasen46/rasen46.github.io/jsLib/rasenJSLib.js") //
+	// source file: https://github.com/rasen46/rasen46.github.io/blob/main/jsLib/rasenJSLib.js //
 	// example module loading: https://github.com/rasen46/rasen46.github.io/blob/main/jsLib/modules/example.js //
 	print: function(text, type) {
 		var cTime = getTime() - rjs.startTime;
