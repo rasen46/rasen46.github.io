@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding: 12px;
+}
+
+.layout {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 150px 1fr 220px;
+  gap: 12px;
+}
+
+/* LEFT COLUMN */
+.left {
+  display: grid;
+  grid-auto-rows: 50px;
+  gap: 5px;
+}
+
+.plTitle {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.thumb {
+  border: 2px solid rgb(100, 100, 100);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.profile {
+  height: 100%;
+  width: auto;
+  padding-right: 5px;
+}
+
+/* CENTER COLUMN */
+.center {
+  display: grid;
+  grid-template-rows: 1fr 100px;
+  gap: 5px;
+}
+
+.main {
+  border: 2px solid rgb(100, 100, 100);
+}
+
+.toolbox {
+  border: 2px solid rgb(100, 100, 100);
+}
+
+/* RIGHT COLUMN */
+.right {
+  display: grid;
+  grid-template-rows: 1fr 25px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px solid rgb(100, 100, 100);
+}
+
+.panel div {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  overflow: hidden;  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  border: 2px solid rgb(100, 100, 100);
+}
+
+.input[type="text"]:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  background-color: #f8f9fa;
+}

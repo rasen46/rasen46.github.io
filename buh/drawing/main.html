@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rasen46's drawing thing</title>
+  <meta charset="UTF-8">
+  <title>rasen drawing thing</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="toolbar">
-
-        </div>
-        <div class="canvas">
-
-        </div>
-        <div class="playerList">
-            
-        </div>
+<div class="layout">
+  <div class="left">
+    <p class="plTitle">player list</p>
+    <div class="thumb">
+      <img class="profile" src="./resources/profile.png" alt="">
+      playerName
     </div>
+    <div class="thumb">
+      <img class="profile" src="./resources/profile.png" alt="">
+      playerName
+    </div>
+  </div>
+
+  <div class="center">
+    <div class="main"><canvas></canvas></div>
+    <div class="toolbox"></div>
+  </div>
+
+  <div class="right">
+    <div class="panel" id="playerChat"></div>
+    <input type="text" class="input" placeholder="type here..." id="plrTextInput">
+  </div>
+</div>
 </body>
 </html>
