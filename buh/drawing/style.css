@@ -51,6 +51,8 @@ body {
   display: grid;
   grid-template-rows: 1fr 100px;
   gap: 5px;
+  width: 800px;
+  height: 600px;
 }
 
 .main {
