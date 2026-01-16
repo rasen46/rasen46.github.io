@@ -8,28 +8,23 @@
 </head>
 <body>
 <div class="layout">
-  <div class="left">
-    <p class="plTitle">player list</p>
-    <div class="thumb">
-      <img class="profile" src="./resources/profile.png" alt="">
-      playerName
-    </div>
-    <div class="thumb">
-      <img class="profile" src="./resources/profile.png" alt="">
-      playerName
+  <div class="heading">
+    <h1>rasen's drawing thing</h1>
+  </div>
+  <div class="players">
+    <div class="list" id="playerList">
+      <div class="playerCard">
+        <img src="./resources/profile.png" alt="pfp">
+        <p>player name</p>
+      </div>
     </div>
   </div>
-
-  <div class="center">
-    <div class="main">
-      <canvas id="canvas" width="800" height="600"></canvas>
-    </div>
-    <div class="toolbox"></div>
+  <div class="drawingBoard">
+    <canvas class="canvas" id="canvas"></canvas>
   </div>
-
   <div class="right">
-    <div class="panel" id="playerChat"></div>
-    <input type="text" class="input" placeholder="type here..." id="plrTextInput">
+    <div class="chat" id="playerChat"></div>
+    <input type="text" class="chatInput" id="plrTextInput" placeholder="type here...">
   </div>
 </div>
 </body>
