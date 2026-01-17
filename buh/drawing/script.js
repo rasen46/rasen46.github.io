@@ -68,5 +68,5 @@ canvas.addEventListener("mouseup", () => isDrawing = false);
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", draw);
 
-window.addEventListener("resize", updateSize);
+//window.addEventListener("resize", updateSize);
 updateSize();
