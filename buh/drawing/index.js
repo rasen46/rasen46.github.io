@@ -43,7 +43,7 @@ connectBtn.addEventListener("click", () => {
     if (host === "") {
         alert("Please enter a host name");
         return;
-    } else if (!host.startsWith("http://")) {
+    } else if (!host.startsWith("http://") && !host.startsWith("https://")) {
         host = "http://" + host;
     }
 
