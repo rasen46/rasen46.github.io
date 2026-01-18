@@ -26,6 +26,15 @@ html, body {
   background: #f2f2f2;
 }
 
+.textSection {
+  font-size: 18px;
+  margin-bottom: 6px;
+  text-align: left;
+
+  border-bottom: 2px solid rgb(100,100,100);
+  padding-bottom: 6px;
+}
+
 /* HEADER */
 .heading {
   grid-area: heading;
@@ -47,15 +56,6 @@ html, body {
   overflow-y: auto;
 }
 
-.plHeading {
-  font-size: 18px;
-  margin-bottom: 6px;
-  text-align: left;
-
-  border-bottom: 2px solid rgb(100,100,100);
-  padding-bottom: 6px;
-}
-
 .playerCard {
   display: flex;
   align-items: center;
@@ -72,11 +72,18 @@ html, body {
 }
 
 /* DRAWING BOARD (CENTER) */
-.drawingBoard {
+.center {
   grid-area: drawing;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.roundTitle {
+  font-size: 24px;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
 }
 
 .canvas {
@@ -100,13 +107,72 @@ html, body {
   padding: 8px;
 }
 
-.right p {
-  font-size: 18px;
-  margin-bottom: 6px;
-  text-align: left;
+.toolbox {
+  border: 2px solid rgb(100,100,100);
 
-  border-bottom: 2px solid rgb(100,100,100);
-  padding-bottom: 6px;
+  display: grid;
+  grid-template-rows: 30px 30px 30px 30px;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.icon {
+  width: auto;
+  height: 15px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.colorSection {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.colorSection p {
+  user-select: none;
+  margin: 0 8px 0 0;
+  align-self: baseline;
+}
+
+.colorPicker {
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  align-self: center;
+  border: none;
+}
+
+.sizeSection {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.sizePicker {
+  width: 50%;
+  margin-left: 8px;
+  cursor: pointer;
+  filter: grayscale(90%);
+}
+
+.toolButton {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.toolButton:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.toolButton.activeTool {
+  background-color: rgb(200, 200, 200);
 }
 
 .chat {

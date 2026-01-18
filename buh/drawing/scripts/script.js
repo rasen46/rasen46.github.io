@@ -2,11 +2,17 @@ const plrTextInp = document.getElementById("plrTextInput");
 const playerChatLog = document.getElementById("playerChat");
 const canvas = document.getElementById("canvas");
 
+const toolbox = document.getElementById("toolbox");
+const penBtn = document.getElementById("pencilTool");
+const eraserBtn = document.getElementById("eraserTool");
+const colorPicker = document.getElementById("colorPicker");
+const sizePicker = document.getElementById("sizePicker");
+
 const ctx = canvas.getContext("2d");
 
 const chatLog = [];
 
-let isDrawing = false, insideCanvas = false;
+let isDrawing = false, insideCanvas = false, currentTool = "pen";
 
 plrTextInp.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -33,8 +39,8 @@ function updateChat() {
 const startDrawing = (event) => {
     isDrawing = true;
 
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = "black";
+    ctx.lineWidth = sizePicker.value;
+    ctx.strokeStyle = currentTool === "eraser" ? "#ffffff" : colorPicker.value;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
@@ -67,6 +73,19 @@ canvas.addEventListener("mouseenter", (event) => {
 canvas.addEventListener("mouseup", () => isDrawing = false);
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", draw);
+
+penBtn.addEventListener("click", function() {
+    currentTool = "pen";
+    toolbox.querySelectorAll(".toolButton").forEach(t => t.classList.remove("activeTool"));
+    penBtn.classList.add("activeTool");
+});
+
+
+eraserBtn.addEventListener("click", function() {
+    currentTool = "eraser";
+    toolbox.querySelectorAll(".toolButton").forEach(t => t.classList.remove("activeTool"));
+    eraserBtn.classList.add("activeTool");
+});
 
 //window.addEventListener("resize", updateSize);
 updateSize();

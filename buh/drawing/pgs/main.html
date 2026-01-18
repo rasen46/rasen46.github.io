@@ -13,18 +13,40 @@
   </div>
   <div class="players">
     <div class="list" id="playerList">
-      <p class="plHeading">player list</p>
+      <p class="textSection">player list</p>
       <div class="playerCard">
         <img src="/buh/drawing/resources/profile.png" alt="pfp">
         <p>player name</p>
       </div>
     </div>
   </div>
-  <div class="drawingBoard">
+  <div class="center">
+    <p class="roundTitle">____ ___</p>
     <canvas class="canvas" id="canvas"></canvas>
   </div>
   <div class="right">
-    <p>player chat</p>
+    <p class="textSection">toolbox</p>
+    <div class="toolbox" id="toolbox">
+      <button class="toolButton" id="pencilTool">
+        <img class="icon" src="/buh/drawing/resources/pencil.png" alt="pencil">
+        Pencil
+      </button>
+      <button class="toolButton" id="eraserTool">
+        <img class="icon" src="/buh/drawing/resources/eraser.png" alt="eraser">
+        Eraser
+      </button>
+      <div class="colorSection">
+        <img class="icon" src="/buh/drawing/resources/color.png" alt="color">
+        <p>Color</p>
+        <input class="colorPicker" type="color" id="colorPicker" value="#000000">
+      </div>
+      <div class="sizeSection">
+        <img class="icon" src="/buh/drawing/resources/size.png" alt="size">
+        <p>Size</p>
+        <input class="sizePicker" type="range" id="sizePicker" min="1" max="50" value="4">
+      </div>
+    </div>
+    <p class="textSection">player chat</p>
     <div class="chat" id="playerChat"></div>
     <input type="text" class="chatInput" id="plrTextInput" placeholder=" type here...">
   </div>
