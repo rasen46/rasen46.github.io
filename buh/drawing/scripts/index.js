@@ -82,6 +82,8 @@ const attemptConnection = (host, uuid) => {
     .then(() => {
         loadPage("./pgs/main.html");
         window.serverHTTP = host;
+        window.plrUsername = username.value.trim();
+        window.serverPassword = password.value.trim();
         console.log("Connected successfully");
     })
     .catch((res) => {
