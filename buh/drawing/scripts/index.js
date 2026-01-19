@@ -3,6 +3,8 @@ const hostName = document.getElementById("hostInput");
 const password = document.getElementById("passwordInput");
 const connectBtn = document.getElementById("connectButton");
 
+let currentScript;
+
 function setCookie(name, value, days) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   document.cookie =
@@ -17,6 +19,29 @@ function getCookie(name) {
     .split("; ")
     .find(row => row.startsWith(name + "="))
     ?.split("=")[1];
+}
+
+async function loadPage(file) {
+  const res = await fetch(file);
+  const html = await res.text();
+  document.getElementById("page").innerHTML = html;
+
+  const filename = file.split("/").pop();
+  const nameWithoutExt = filename.slice(0, -5);
+  loadScript(`./scripts/${nameWithoutExt}.js`);
+}
+
+function loadScript(src) {
+  if (currentScript) {
+    currentScript.remove();
+  }
+
+  const script = document.createElement("script");
+  script.src = src;
+  script.defer = true;
+
+  document.body.appendChild(script);
+  currentScript = script;
 }
 
 const getUUID = () => {
@@ -47,7 +72,7 @@ const attemptConnection = (host, uuid) => {
     fetch(`${host}/connect`, {
         method: "POST",
         headers: {"Content-Type": "application/json"}, 
-        body: JSON.stringify({password: password.value.trim(), client_uuid: undefined, username: username.value.trim()}),
+        body: JSON.stringify({password: password.value.trim(), client_uuid: uuid, username: username.value.trim()}),
         cache: "no-store"
     })
     .then(res => {
@@ -55,6 +80,8 @@ const attemptConnection = (host, uuid) => {
         return res;
     })
     .then(() => {
+        loadPage("./pgs/main.html");
+        window.serverHTTP = host;
         console.log("Connected successfully");
     })
     .catch((res) => {

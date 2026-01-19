@@ -8,11 +8,21 @@ const eraserBtn = document.getElementById("eraserTool");
 const colorPicker = document.getElementById("colorPicker");
 const sizePicker = document.getElementById("sizePicker");
 
+const httpConnection = window.serverHTTP;
+const url = new URL(httpConnection);
+url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
+url.port = String(Number(url.port) + 1);
+
+const ws = new WebSocket(url.toString());
+
 const ctx = canvas.getContext("2d");
 
 const chatLog = [];
 
-let isDrawing = false, insideCanvas = false, currentTool = "pen";
+let isDrawing = false,
+    allowDrawing = false,
+    insideCanvas = false,
+    currentTool = "pen";
 
 plrTextInp.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -37,6 +47,7 @@ function updateChat() {
 }
 
 const startDrawing = (event) => {
+    if (!allowDrawing) return;
     isDrawing = true;
 
     ctx.lineWidth = sizePicker.value;
