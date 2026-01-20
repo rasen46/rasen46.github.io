@@ -8,6 +8,8 @@ const eraserBtn = document.getElementById("eraserTool");
 const colorPicker = document.getElementById("colorPicker");
 const sizePicker = document.getElementById("sizePicker");
 
+const clientTimer = document.getElementById("timer");
+
 const httpConnection = window.serverHTTP;
 const url = new URL(httpConnection);
 url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
@@ -29,6 +31,7 @@ let isDrawing = false,
 
 function pushChatMessage(username, message) {
 	chatLog.push(`<${username}> ${message}`);
+    updateChat();
 }
 
 function getCookie(name) {
@@ -47,11 +50,9 @@ plrTextInp.addEventListener("keydown", function(event) {
 		pushChatMessage(window.plrUsername, message);
 		plrTextInp.value = "";
 
-		updateChat();
-
 		ws.send(JSON.stringify({
 			type: "chat",
-			message: message
+			message: message,
 		}));
 	}
 });
@@ -60,6 +61,7 @@ function updateChat() {
 	playerChatLog.innerHTML = "";
 	chatLog.forEach(msg => {
 		const msgDiv = document.createElement("div");
+        msgDiv.classList.add("chatMessage");
 		msgDiv.textContent = msg;
 		playerChatLog.appendChild(msgDiv);
 	});
@@ -91,7 +93,7 @@ const draw = (event) => {
     ctx.stroke();
 
     // send to server
-    const points = [{x: lastX, y: lastY}, {x: x, y: y}]; // simple two-point
+    const points = [{x: lastX, y: lastY}, {x: x, y: y}];
     ws.send(JSON.stringify({
         type: "draw",
         points: points,
@@ -124,6 +126,22 @@ function drawRemoteStroke(data) {
     ctx.stroke();
 }
 
+function startTimer(endTime) {
+	roundEndTime = endTime;
+
+	const interval = setInterval(() => {
+		const remaining = Math.max(
+			0,
+			Math.ceil((roundEndTime - Date.now()) / 1000)
+		);
+
+		clientTimer.textContent = `time remaining: ${remaining}`;
+
+		if (remaining <= 0) {
+			clearInterval(interval);
+		}
+	}, 250);
+}
 
 const updateSize = () => {
 	canvas.width = canvas.offsetWidth;
@@ -187,16 +205,29 @@ ws.onmessage = (event) => {
 
 		case "chat":
 			pushChatMessage(data.username, data.message);
-			updateChat();
 			break;
 
 		case "draw":
 			drawRemoteStroke(data);
 			break;
+        
+        case "player_joined":
+            handlePlayerJoin(data.uuid, data.username);
+            break;
 
 		case "player_left":
 			handlePlayerLeave(data.uuid);
 			break;
+        
+        case "round_sync":
+            startTimer(data.endTime);
+        case "round_start":
+            startTimer(data.endTime);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (data.drawer === getCookie("client_uuid")) {
+                allowDrawing = true;
+            }
+            break;
 	}
 };
 
