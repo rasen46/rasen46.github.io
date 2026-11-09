@@ -63,6 +63,8 @@
       var Module = {
         arguments: ["./game.love"],
         INITIAL_MEMORY: 16777216,
+        // Browser sockets are WebSockets: use wss:// on https pages (GitHub Pages), ws:// otherwise (Live Server)
+        websocket: { url: location.protocol === 'https:' ? 'wss://' : 'ws://' },
         printErr: console.error.bind(console),
         canvas: (function() {
           var canvas = document.getElementById('canvas');
